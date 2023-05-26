@@ -628,10 +628,10 @@ def guardar_archivo_csv_ranking(lista:list,nombre:str,metodo:str,keys:list):
     flag = False
     with open("{0}.csv".format(nombre),metodo) as file:
           lista_encabezado = keys
-          mensaje_encabezado =""
+          mensaje_encabezado ="Jugador,"
           mensaje = ""
           for parte in lista_encabezado:
-                        mensaje_encabezado =  mensaje_encabezado + "{0},".format(parte)
+                        mensaje_encabezado =  mensaje_encabezado + "{0},".format(capitalizar_nombre(parte).replace("_"," "))
           for personaje in lista:
                  mensaje = mensaje +"\n" +personaje+","
                  for logros in lista[personaje]:
