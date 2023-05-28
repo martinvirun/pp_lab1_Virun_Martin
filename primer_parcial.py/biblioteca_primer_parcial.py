@@ -546,7 +546,7 @@ def calcular_promedio_con_menos_uno(lista_jugadores,key_a_promediar):
      valor_a_restar = 0
      for jugador in lista_jugadores:
           if (jugador["nombre"] == nombre_menor):
-              valor_a_resta = jugador["estadisticas"][key_a_promediar]
+              valor_a_restar = jugador["estadisticas"][key_a_promediar]
 
      cantidad = len(lista_jugadores) - 1 
      acumulador = sumar_dato(lista_jugadores,key_a_promediar) - valor_a_restar
