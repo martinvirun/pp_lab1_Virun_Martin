@@ -641,3 +641,71 @@ def guardar_archivo_csv_ranking(lista:list,nombre:str,metodo:str,keys:list):
           flag = True
     return flag
 #=====================================================================================
+#24-Ejercicio extra dia de pacial:
+# 1-Determinar la cantidad de jugadores que hay por cada posición.
+# Ejemplo:
+# Base: 2
+# Alero: 3
+# ...
+
+# 2-Mostrar la lista de jugadores ordenadas por la cantidad de All-Star de forma descendente.
+# La salida por pantalla debe tener un formato similar a este:
+# Michael Jordan (14 veces All Star)
+# Magic Johnson (12 veces All-Star)
+# ...
+
+# 3-Determinar qué jugador tiene las mejores estadísticas en cada valor. 
+# La salida por pantalla debe tener un formato similar a este:
+# Mayor cantidad de temporadas: Karl Malone (19)
+# Mayor cantidad de puntos totales: Karl Malon (36928)
+# …
+
+# 4 - Determinar qué jugador tiene las mejores estadísticas de todos.
+def contador_posicion(lista:list):
+     dic_posiciones = {}
+
+     for jugador in lista:
+             print(jugador["posicion"])
+             if (jugador["posicion"] in dic_posiciones ):
+                    dic_posiciones[jugador["posicion"]] = dic_posiciones[jugador["posicion"]] + 1
+             else:
+                    dic_posiciones[jugador["posicion"]] = 1
+     for jugador in dic_posiciones:
+          print("la cantidad de {0} son {1}".format(jugador,dic_posiciones[jugador]))
+     return dic_posiciones
+#=====================================================================================
+
+def ordenar_por_all_Star(lista:list):
+     dic_all_star={}
+     lista_all_star = []
+    
+     for nombre in lista:
+        dic_all_star={}
+        for jugador in nombre["logros"]:
+          if(re.search("veces All-Star",jugador)!= None):
+             dic_all_star["nombre"] = nombre["nombre"]
+             dic_all_star["valor"] = jugador
+             lista_all_star.append(dic_all_star)
+     rango_a = len(lista_all_star)
+     flag_swap = True
+     while(flag_swap):
+        flag_swap = False
+        rango_a = rango_a - 1
+        for indice_A in range(rango_a):
+             if (int(re.findall("[0-9]+",lista_all_star[indice_A]["valor"])[0] )<  int(re.findall("[0-9]+",lista_all_star[indice_A+1]["valor"])[0])) :
+                  lista_all_star[indice_A], lista_all_star[indice_A+1] =  lista_all_star[indice_A+1], lista_all_star[indice_A]
+                  flag_swap = True
+     for jugador in lista_all_star:
+          print("el jugador {0} tiene {1} ".format(jugador["nombre"],jugador["valor"]))
+     return lista_all_star
+#=====================================================================================
+def buscar_mayor_de_todo(lista:list):
+     lista_estadisticas =[]
+     for jugador in lista:
+             for estadistica in jugador["estadisticas"]:
+                 lista_estadisticas.append(estadistica)
+             break
+     for estadistica in lista_estadisticas:
+             print("el mayor de la estadistica {0} es {1}:".format(estadistica,buscar_mayor(lista,estadistica) ))
+             
+#=====================================================================================
