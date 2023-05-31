@@ -707,5 +707,30 @@ def buscar_mayor_de_todo(lista:list):
              break
      for estadistica in lista_estadisticas:
              print("el mayor de la estadistica {0} es {1}:".format(estadistica,buscar_mayor(lista,estadistica) ))
-             
+            
+#=====================================================================================
+def buscar_mejor_en_estadisticas(lista):
+     dic_estadisticas = {}
+     for nombre in lista:
+          if(nombre in dic_estadisticas):
+               dic_estadisticas[nombre] +=1
+          else:
+               
+               dic_estadisticas[nombre] = 1
+     mayor = None
+     nombre = None
+     contador = 0
+     for dic in dic_estadisticas:
+          if (contador == 0 ):
+               mayor = dic_estadisticas[dic]
+               nombre = dic
+               contador = 1
+          else:
+               if(mayor < dic_estadisticas[dic]):
+                    mayor = dic_estadisticas[dic]
+                    nombre = dic
+
+         
+     return nombre
+     
 #=====================================================================================
